@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>VIP Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Tailwind config + CDN -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            screens: {
+              desk: "1366px", // od 1366px naviše (bez scrolla)
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Montserrat font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .font-montserrat {
+        font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen text-white font-montserrat bg-[#050816] bg-[url('./img/background.jpg')] bg-cover bg-center bg-no-repeat"
+  >
+    <section
+      class="relative flex min-h-screen items-center justify-center py-8"
+    >
+      <!-- Dekor svetla dole (opciono) -->
+      <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40">
+        <div
+          class="absolute left-1/4 h-full w-[3px] bg-gradient-to-t from-yellow-400/70 via-yellow-200/0 to-transparent blur-[1px]"
+        ></div>
+        <div
+          class="absolute left-1/2 h-full w-[3px] bg-gradient-to-t from-yellow-400/60 via-yellow-200/0 to-transparent blur-[1px]"
+        ></div>
+        <div
+          class="absolute left-3/4 h-full w-[3px] bg-gradient-to-t from-yellow-400/60 via-yellow-200/0 to-transparent blur-[1px]"
+        ></div>
+      </div>
+
+      <!-- GLAVNI WRAPPER -->
+      <div
+        class="relative z-10 w-full max-w-[1430px] mx-auto px-4 desk:px-0"
+      >
+        <!-- VIP CLUB TITLE -->
+        <div class="text-center">
+          <h1
+            class="bg-gradient-to-b from-[#f9e4b7] via-[#d9a52d] to-[#f7e2a8] bg-clip-text text-3xl font-medium tracking-[0.35em] text-transparent desk:text-4xl"
+          >
+            VIP CLUB
+          </h1>
+        </div>
+
+        <!-- KARTICE -->
+        <div
+          class="no-scrollbar pt-10 flex gap-4 overflow-x-auto px-4 pb-10
+                 desk:gap-8 desk:justify-center desk:overflow-visible desk:px-0 desk:pb-0"
+        >
+          <!-- STARTER -->
+          <article
+            class="snap-start shrink-0 w-[78%] max-w-[260px] desk:w-[230px] desk:max-w-none"
+          >
+            <div class="relative mx-auto flex flex-col items-center pt-16">
+              <!-- BADGE -->
+              <img
+                src="./img/badge_starter.png"
+                alt="Starter badge"
+                class="absolute -top-16 left-1/2 z-10 h-[17rem] w-auto -translate-x-1/2"
+              />
+
+              <!-- BOX -->
+              <div
+                class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+              >
+                <!-- levo “border” -->
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
+                ></div>
+                <!-- desno “border” -->
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] right-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86daa] to-transparent"
+                ></div>
+                <!-- donja linija -->
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[#f0c86dcc] to-transparent"
+                ></div>
+                <!-- donji glow -->
+                <div
+                  class="pointer-events-none absolute bottom-[-10%] left-1/2 h-12 w-[70%] -translate-x-1/2 bg-[radial-gradient(circle_at_top,#f0c86d99_0,transparent_70%)]"
+                ></div>
+
+                <div
+                  class="relative flex desk:min-h-[490px] min-h-[540px] flex-col px-6 pb-8 pt-32"
+                >
+                  <h2
+                    class="text-center text-lg font-medium tracking-[0.25em] text-[#d9a52d] desk:text-base"
+                  >
+                    STARTER
+                  </h2>
+                  <ul
+                    class="mt-4 space-y-1.5 text-sm leading-tight text-white desk:text-[12px]"
+                  >
+                    <li>• Redovni poklon spinovi.</li>
+                    <li>• Turniri.</li>
+                    <li>• Promocije.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- BRONZE -->
+          <article
+            class="snap-start shrink-0 w-[78%] max-w-[260px] desk:w-[230px] desk:max-w-none"
+          >
+            <div class="relative mx-auto flex flex-col items-center pt-16">
+              <img
+                src="./img/badge_bronze.png"
+                alt="Bronze badge"
+                class="absolute -top-16 left-1/2 z-10 h-[17rem] w-auto -translate-x-1/2"
+              />
+
+              <div
+                class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+              >
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] right-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86daa] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[#f0c86dcc] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute bottom-[-10%] left-1/2 h-12 w-[70%] -translate-x-1/2 bg-[radial-gradient(circle_at_top,#f0c86d99_0,transparent_70%)]"
+                ></div>
+
+                <div
+                  class="relative flex desk:min-h-[490px] min-h-[540px] flex-col px-6 pb-8 pt-32"
+                >
+                  <h2
+                    class="text-center text-lg font-medium tracking-[0.25em] text-[#d9a52d] desk:text-base"
+                  >
+                    BRONZE
+                  </h2>
+                  <ul
+                    class="mt-4 space-y-1.5 text-sm leading-tight text-white desk:text-[12px]"
+                  >
+                    <li>• Redovni poklon spinovi.</li>
+                    <li>• Bonusi sa povoljnim uslovima.</li>
+                    <li>• Turniri.</li>
+                    <li>• Promocije.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- SILVER -->
+          <article
+            class="snap-start shrink-0 w-[78%] max-w-[260px] desk:w-[230px] desk:max-w-none"
+          >
+            <div class="relative mx-auto flex flex-col items-center pt-16">
+              <img
+                src="./img/badge_silver.png"
+                alt="Silver badge"
+                class="absolute -top-16 left-1/2 z-10 h-[17rem] w-auto -translate-x-1/2"
+              />
+
+              <div
+                class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+              >
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] right-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86daa] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[#f0c86dcc] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute bottom-[-10%] left-1/2 h-12 w-[70%] -translate-x-1/2 bg-[radial-gradient(circle_at_top,#f0c86d99_0,transparent_70%)]"
+                ></div>
+
+                <div
+                  class="relative flex desk:min-h-[490px] min-h-[540px] flex-col px-6 pb-8 pt-32"
+                >
+                  <h2
+                    class="text-center text-lg font-medium tracking-[0.25em] text-[#d9a52d] desk:text-base"
+                  >
+                    SILVER
+                  </h2>
+                  <ul
+                    class="mt-4 space-y-1.5 text-sm leading-tight text-white desk:text-[12px]"
+                  >
+                    <li>• Redovni poklon spinovi.</li>
+                    <li>• Bonusi sa povoljnim uslovima.</li>
+                    <li>• Redovan kazino cashback.</li>
+                    <li>• Turniri.</li>
+                    <li>• Promocije.</li>
+                    <li>• Viši limiti isplata.</li>
+                    <li>• Personalizovane promocije.</li>
+                    <li>• Lični asistent za bržu komunikaciju.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- GOLD -->
+          <article
+            class="snap-start shrink-0 w-[78%] max-w-[260px] desk:w-[230px] desk:max-w-none"
+          >
+            <div class="relative mx-auto flex flex-col items-center pt-16">
+              <img
+                src="./img/badge_gold.png"
+                alt="Gold badge"
+                class="absolute -top-16 left-1/2 z-10 h-[17rem] w-auto -translate-x-1/2"
+              />
+
+              <div
+                class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+              >
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] right-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86daa] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[#f0c86dcc] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute bottom-[-10%] left-1/2 h-12 w-[70%] -translate-x-1/2 bg-[radial-gradient(circle_at_top,#f0c86d99_0,transparent_70%)]"
+                ></div>
+
+                <div
+                  class="relative flex desk:min-h-[490px] min-h-[540px] flex-col px-6 pb-8 pt-32"
+                >
+                  <h2
+                    class="text-center text-lg font-medium tracking-[0.25em] text-[#d9a52d] desk:text-base"
+                  >
+                    GOLD
+                  </h2>
+                  <ul
+                    class="mt-4 space-y-1.5 text-sm leading-tight text-white desk:text-[12px]"
+                  >
+                    <li>• Redovni poklon spinovi sa većim ulozima.</li>
+                    <li>• Bonusi sa povoljnijim uslovima.</li>
+                    <li>• Redovan kazino cashback.</li>
+                    <li>• Specijalni turniri.</li>
+                    <li>• Viši limiti isplata.</li>
+                    <li>• Brža obrada zahteva.</li>
+                    <li>• Najviši limiti promocija.</li>
+                    <li>• Pozivnice za prestižne događaje.</li>
+                    <li>• Lični asistent za bržu komunikaciju.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PLATINUM -->
+          <article
+            class="snap-start shrink-0 w-[78%] max-w-[260px] desk:w-[230px] desk:max-w-none"
+          >
+            <div class="relative mx-auto flex flex-col items-center pt-16">
+              <img
+                src="./img/badge_platinum.png"
+                alt="Platinum badge"
+                class="absolute -top-16 left-1/2 z-10 h-[17rem] w-auto -translate-x-1/2"
+              />
+
+              <div
+                class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+              >
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute inset-y-[-12%] right-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86daa] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[#f0c86dcc] to-transparent"
+                ></div>
+                <div
+                  class="pointer-events-none absolute bottom-[-10%] left-1/2 h-12 w-[70%] -translate-x-1/2 bg-[radial-gradient(circle_at_top,#f0c86d99_0,transparent_70%)]"
+                ></div>
+
+                <div
+                  class="relative flex desk:min-h-[490px] min-h-[540px] flex-col px-6 pb-8 pt-32"
+                >
+                  <h2
+                    class="text-center text-lg font-medium tracking-[0.25em] text-[#d9a52d] desk:text-base"
+                  >
+                    PLATINUM
+                  </h2>
+                  <ul
+                    class="mt-4 space-y-1.5 text-sm leading-tight text-white desk:text-[12px]"
+                  >
+                    <li>• Redovni poklon spinovi sa većim ulozima.</li>
+                    <li>• Bonusi sa najpovoljnijim uslovima.</li>
+                    <li>• Redovan kazino cashback.</li>
+                    <li>• Specijalni turniri.</li>
+                    <li>• Promocije.</li>
+                    <li>• Najviši limiti isplata.</li>
+                    <li>• Prioritetna obrada zahteva.</li>
+                    <li>• Ekskluzivne personalizovane promocije.</li>
+                    <li>• Pozivnice za prestižne događaje.</li>
+                    <li>• Lični asistent – uvek dostupan, samo za tebe.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
