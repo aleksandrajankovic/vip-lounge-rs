@@ -5,19 +5,19 @@
     <title>VIP Club</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Tailwind config + CDN -->
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             screens: {
-              desk: "1366px", // desktop breakpoint – iznad ovoga nema scrolla
+              desk: "1366px", // iznad ovoga nema horizontalnog skrolovanja
             },
           },
         },
       };
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Montserrat font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,75 +48,60 @@
     <section
       class="relative flex min-h-screen items-center justify-center py-8"
     >
-      <!-- Dekor svetla dole (opciono) -->
-      <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40">
-        <div
-          class="absolute left-1/4 h-full w-[3px] bg-gradient-to-t from-yellow-400/70 via-yellow-200/0 to-transparent blur-[1px]"
-        ></div>
-        <div
-          class="absolute left-1/2 h-full w-[3px] bg-gradient-to-t from-yellow-400/60 via-yellow-200/0 to-transparent blur-[1px]"
-        ></div>
-        <div
-          class="absolute left-3/4 h-full w-[3px] bg-gradient-to-t from-yellow-400/60 via-yellow-200/0 to-transparent blur-[1px]"
-        ></div>
-      </div>
-
       <!-- GLAVNI WRAPPER -->
-      <div
-        class="relative z-10 w-full max-w-[1430px] mx-auto px-4 desk:px-0"
-      >
-        <!-- VIP CLUB TITLE (malo veći, lepo lomi u 2 reda na uskim ekranima) -->
-        <div class="text-center">
+      <div class="relative z-10 w-full max-w-[1430px] mx-auto">
+        <!-- VIP CLUB TITLE -->
+        <div class="text-center px-4 desk:px-0">
           <h1
-            class="bg-gradient-to-b from-[#f9e4b7] via-[#d9a52d] to-[#f7e2a8] bg-clip-text text-transparent
-                   text-3xl desk:text-5xl font-medium tracking-[0.30em] leading-tight"
+            class="bg-gradient-to-b from-[#f9e4b7] via-[#d9a52d] to-[#f7e2a8] bg-clip-text text-transparent text-3xl desk:text-5xl font-medium tracking-[0.30em] leading-tight"
           >
             <span class="block">VIP</span>
             <span class="block">CLUB</span>
           </h1>
         </div>
 
-        <!-- SLIDER WRAPPER (za fade + strelice) -->
-        <div class="relative mt-8">
-         
-       
+        <!-- SLIDER WRAPPER + fade -->
+        <div class="relative mt-8 px-4 desk:px-0">
+          <!-- fade levo -->
+          <div
+            id="vipFadeLeft"
+            class="pointer-events-none absolute inset-y-0 left-0 w-20 z-20 bg-gradient-to-r from-[#050816] via-[#050816]/85 to-transparent desk:hidden opacity-0 transition-opacity duration-200"
+          ></div>
+          <!-- fade desno -->
+          <div
+            id="vipFadeRight"
+            class="pointer-events-none absolute inset-y-0 right-0 w-20 z-20 bg-gradient-to-l from-[#050816] via-[#050816]/85 to-transparent desk:hidden opacity-100 transition-opacity duration-200"
+          ></div>
 
           <!-- KARTICE -->
           <div
             id="vipSlider"
-            class="no-scrollbar pt-6 flex gap-4 overflow-x-auto px-4 pb-10
-                   snap-x snap-mandatory
-                   desk:gap-8 desk:justify-center desk:overflow-visible desk:px-0 desk:pb-0"
+            style="touch-action: pan-y; -webkit-overflow-scrolling: touch"
+            class="relative z-10 no-scrollbar overflow-x-auto pt-6 flex gap-4 pb-10 snap-x snap-mandatory desk:gap-8 desk:justify-center desk:overflow-visible desk:pb-0"
           >
             <!-- STARTER -->
             <article
               class="vip-card snap-center shrink-0 w-[78%] max-w-[260px] desk:w-[230px] desk:max-w-none"
             >
               <div class="relative mx-auto flex flex-col items-center pt-16">
-                <!-- BADGE (spušten malo) -->
                 <img
                   src="./img/badge_starter.png"
                   alt="Starter badge"
                   class="absolute -top-14 left-1/2 z-10 h-[16rem] w-auto -translate-x-1/2"
                 />
 
-                <!-- BOX -->
                 <div
-                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-transparent via-[#16232a]/70 to-[#16232a]"
                 >
-                  <!-- levo “border” -->
                   <div
                     class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
                   ></div>
-                  <!-- desno “border” -->
                   <div
                     class="pointer-events-none absolute inset-y-[-12%] right-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86daa] to-transparent"
                   ></div>
-                  <!-- donja linija -->
                   <div
                     class="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-[#f0c86dcc] to-transparent"
                   ></div>
-                  <!-- donji glow -->
                   <div
                     class="pointer-events-none absolute bottom-[-10%] left-1/2 h-12 w-[70%] -translate-x-1/2 bg-[radial-gradient(circle_at_top,#f0c86d99_0,transparent_70%)]"
                   ></div>
@@ -129,7 +114,6 @@
                     >
                       STARTER
                     </h2>
-                    <!-- manji tekst benefita -->
                     <ul
                       class="mt-4 space-y-1.5 text-[13px] leading-tight text-white desk:text-[11px]"
                     >
@@ -154,7 +138,7 @@
                 />
 
                 <div
-                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-transparent via-[#16232a]/70 to-[#16232a]"
                 >
                   <div
                     class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
@@ -202,7 +186,7 @@
                 />
 
                 <div
-                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-transparent via-[#16232a]/70 to-[#16232a]"
                 >
                   <div
                     class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
@@ -254,7 +238,7 @@
                 />
 
                 <div
-                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-transparent via-[#16232a]/70 to-[#16232a]"
                 >
                   <div
                     class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
@@ -307,7 +291,7 @@
                 />
 
                 <div
-                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-[#141b25] via-[#050712] to-[#050816]"
+                  class="relative z-0 w-full overflow-visible bg-gradient-to-b from-transparent via-[#16232a]/70 to-[#16232a]"
                 >
                   <div
                     class="pointer-events-none absolute inset-y-[-12%] left-0 w-[3px] bg-gradient-to-b from-transparent via-[#f0c86d88] to-transparent"
@@ -353,58 +337,98 @@
       </div>
     </section>
 
-    <!-- JS za strelice i centriranje slajda -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const slider = document.getElementById("vipSlider");
         const cards = Array.from(slider.querySelectorAll(".vip-card"));
-        const prevBtn = document.getElementById("vipPrev");
-        const nextBtn = document.getElementById("vipNext");
+        const fadeLeft = document.getElementById("vipFadeLeft");
+        const fadeRight = document.getElementById("vipFadeRight");
+
         let currentIndex = 0;
+
+        function clampIndex(i) {
+          if (i < 0) return 0;
+          if (i > cards.length - 1) return cards.length - 1;
+          return i;
+        }
+
+        function updateFades() {
+          if (window.innerWidth >= 1366) {
+            fadeLeft.style.opacity = "0";
+            fadeRight.style.opacity = "0";
+            return;
+          }
+
+          fadeLeft.style.opacity = currentIndex === 0 ? "0" : "1";
+          fadeRight.style.opacity =
+            currentIndex === cards.length - 1 ? "0" : "1";
+        }
 
         function scrollToCard(index) {
           if (!slider || !cards.length) return;
-          if (index < 0) index = 0;
-          if (index > cards.length - 1) index = cards.length - 1;
-          currentIndex = index;
+          currentIndex = clampIndex(index);
+          const card = cards[currentIndex];
 
-          const card = cards[index];
           const cardRect = card.getBoundingClientRect();
           const sliderRect = slider.getBoundingClientRect();
           const left =
             card.offsetLeft - (sliderRect.width - cardRect.width) / 2;
 
           slider.scrollTo({ left, behavior: "smooth" });
+          updateFades();
         }
 
-        prevBtn?.addEventListener("click", () => {
-          scrollToCard(currentIndex - 1);
-        });
+        if (window.innerWidth < 1366) {
+          scrollToCard(0);
+        } else {
+          updateFades();
+        }
 
-        nextBtn?.addEventListener("click", () => {
-          scrollToCard(currentIndex + 1);
-        });
+        let touchStartX = 0;
+        let isTouching = false;
 
-        // malo pametnije praćenje koji je slajd "aktivni"
-        let scrollTimeout;
-        slider?.addEventListener("scroll", () => {
-          clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(() => {
-            const center = slider.scrollLeft + slider.clientWidth / 2;
-            let closest = 0;
-            let minDist = Infinity;
+        slider.addEventListener(
+          "touchstart",
+          (e) => {
+            if (window.innerWidth >= 1366) return;
+            if (!e.touches || !e.touches.length) return;
+            isTouching = true;
+            touchStartX = e.touches[0].clientX;
+          },
+          { passive: true }
+        );
 
-            cards.forEach((card, i) => {
-              const cardCenter = card.offsetLeft + card.clientWidth / 2;
-              const dist = Math.abs(cardCenter - center);
-              if (dist < minDist) {
-                minDist = dist;
-                closest = i;
-              }
-            });
+        slider.addEventListener(
+          "touchend",
+          (e) => {
+            if (window.innerWidth >= 1366) return;
+            if (!isTouching) return;
+            isTouching = false;
 
-            currentIndex = closest;
-          }, 80);
+            const endX = e.changedTouches[0].clientX;
+            const deltaX = endX - touchStartX;
+            const THRESHOLD = 40;
+
+            if (Math.abs(deltaX) < THRESHOLD) {
+              scrollToCard(currentIndex);
+              return;
+            }
+
+            if (deltaX < 0) {
+              scrollToCard(currentIndex + 1);
+            } else {
+              scrollToCard(currentIndex - 1);
+            }
+          },
+          { passive: true }
+        );
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth < 1366) {
+            scrollToCard(currentIndex);
+          } else {
+            updateFades();
+          }
         });
       });
     </script>
