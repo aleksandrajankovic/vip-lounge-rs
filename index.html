@@ -35,7 +35,7 @@
         theme: {
           extend: {
             screens: {
-              desk: "1366px", // iznad ovoga nema horizontalnog skrolovanja
+              desk: "1366px",
             },
           },
         },
@@ -67,6 +67,22 @@
           "Segoe UI",
           sans-serif;
       }
+      .vip-acc__content {
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition:
+          height 320ms ease,
+          opacity 240ms ease,
+          transform 240ms ease;
+        will-change: height, opacity, transform;
+      }
+
+      details[open] > .vip-acc__content {
+        opacity: 1;
+        transform: translateY(0);
+      }
     </style>
   </head>
 
@@ -74,9 +90,9 @@
     class="min-h-screen text-white font-montserrat bg-[#050816] bg-[url('./img/background.jpg')] bg-cover bg-center bg-no-repeat"
   >
     <!-- HEADER -->
-    <header class="fixed top-0 left-0 w-full z-30">
+    <header class="md:fixed top-0 left-0 w-full z-30">
       <div
-        class="max-w-[1430px] mx-auto flex items-center justify-center md:justify-between px-3 py-2 md:px-0 md:py-4 bg-[#050816]/70 backdrop-blur-sm"
+        class="max-w-[1430px] mx-auto flex items-center justify-center md:justify-between px-3 py-4 md:px-0 md:py-4 bg-[#050816]/70 backdrop-blur-sm"
       >
         <!-- LOGO -->
         <a href="https://meridianbet.rs" class="block shrink-0">
@@ -97,7 +113,7 @@
       </div>
     </header>
     <section
-      class="relative flex items-start justify-center pt-16 pb-28 md:min-h-screen md:items-center md:py-8 md:pt-28"
+      class="relative flex items-start justify-center pt-8 pb-24 md:min-h-screen md:items-center md:py-8 md:pt-28"
     >
       <!-- GLAVNI WRAPPER -->
       <div class="relative z-10 w-full max-w-[1430px] mx-auto">
@@ -112,255 +128,817 @@
 
         <!-- SLIDER WRAPPER + fade -->
         <div class="relative mt-14 px-4 desk:px-0">
+          <!-- fade levo -->
+          <div
+            id="vipFadeLeft"
+            class="hidden md:block pointer-events-none absolute inset-y-0 left-0 w-20 z-20 bg-gradient-to-r from-[#111] via-[#111]/85 to-transparent desk:hidden opacity-0 transition-opacity duration-200"
+          ></div>
+          <!-- fade desno -->
+          <div
+            id="vipFadeRight"
+            class="hidden md:block pointer-events-none absolute inset-y-0 right-0 w-20 z-20 bg-gradient-to-l from-[#111] via-[#111]/85 to-transparent desk:hidden opacity-100 transition-opacity duration-200"
+          ></div>
           <!-- MOBILE STACK (accordion) -->
-          <div class="md:hidden space-y-4">
+          <div class="md:hidden space-y-4" id="vipAccordion">
             <!-- BRONZE -->
             <details
-              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+              class="vip-acc group relative rounded-2xl overflow-hidden bg-black/50 backdrop-blur-xl border border-white/10 ring-1 ring-[#f0c86d]/20 shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition hover:ring-[#f0c86d]/35 open:ring-[#f0c86d]/40"
             >
+              <!-- premium shine -->
+              <div
+                class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(240,200,109,0.18),transparent_45%)]"
+              ></div>
+
               <summary
-                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+                class="relative cursor-pointer list-none flex items-center gap-4 px-5 py-5 select-none"
               >
                 <img
                   src="./img/f1.png"
                   alt="Bronze badge"
-                  class="h-24 w-auto shrink-0"
+                  class="h-24 w-24 shrink-0 drop-shadow-[0_10px_18px_rgba(0,0,0,0.45)]"
                 />
+
                 <div class="flex-1">
                   <div
-                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                    class="text-[#f0c86d] font-medium tracking-[0.26em] text-lg"
                   >
                     BRONZE
                   </div>
                 </div>
+
                 <span
-                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                  class="ml-auto grid place-items-center h-10 w-10 rounded-full bg-black/20 border border-[#f0c86d]/25 transition-all duration-300 group-open:bg-[#f0c86d]/15 group-open:border-[#f0c86d]/40"
+                  aria-hidden="true"
                 >
                   <svg
-                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    class="h-5 w-5 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
-                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
+                    <path d="M6 9l6 6 6-6" />
                   </svg>
                 </span>
               </summary>
 
-              <div class="px-5 pb-5 pt-1">
-                <ul class="space-y-2 text-sm leading-snug">
-                  <li>• Redovni poklon spinovi.</li>
-                  <li>• Turniri.</li>
-                  <li>• Promocije.</li>
+              <!-- content: fade/slide on open -->
+              <div class="vip-acc__content relative px-6 pb-6 -mt-1">
+                <div
+                  class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-4"
+                ></div>
+
+                <ul class="space-y-2 text-m leading-relaxed text-white/90">
+                  <li class="flex items-start gap-1">
+                    <span class="mt-1 flex-shrink-0">
+                      <svg
+                        class="w-4 h-4 text-[#f0c86d]"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>Redovni poklon spinovi.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <span class="mt-1 flex-shrink-0">
+                      <svg
+                        class="w-4 h-4 text-[#f0c86d]"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>Turniri.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <span class="mt-1 flex-shrink-0">
+                      <svg
+                        class="w-4 h-4 text-[#f0c86d]"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>Promocije.</span>
+                  </li>
                 </ul>
               </div>
             </details>
-
             <!-- SILVER -->
             <details
-              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+              class="vip-acc group relative rounded-2xl overflow-hidden bg-black/50 backdrop-blur-xl border border-white/10 ring-1 ring-[#f0c86d]/20 shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition hover:ring-[#f0c86d]/35 open:ring-[#f0c86d]/40"
             >
+              <!-- premium shine -->
+              <div
+                class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(240,200,109,0.18),transparent_45%)]"
+              ></div>
+
               <summary
-                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+                class="relative cursor-pointer list-none flex items-center gap-4 px-5 py-5 select-none"
               >
                 <img
                   src="./img/f2.png"
-                  alt="Silver badge"
-                  class="h-24 w-auto shrink-0"
+                  alt="Bronze badge"
+                  class="h-24 w-24 shrink-0 drop-shadow-[0_10px_18px_rgba(0,0,0,0.45)]"
                 />
+
                 <div class="flex-1">
                   <div
-                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                    class="text-[#f0c86d] font-medium tracking-[0.26em] text-lg"
                   >
                     SILVER
                   </div>
                 </div>
+
                 <span
-                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                  class="ml-auto grid place-items-center h-10 w-10 rounded-full bg-black/20 border border-[#f0c86d]/25 transition-all duration-300 group-open:bg-[#f0c86d]/15 group-open:border-[#f0c86d]/40"
+                  aria-hidden="true"
                 >
                   <svg
-                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    class="h-5 w-5 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
-                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
+                    <path d="M6 9l6 6 6-6" />
                   </svg>
                 </span>
               </summary>
 
-              <div class="px-5 pb-5 pt-1">
-                <ul class="space-y-2 text-sm leading-snug">
-                  <li>• Redovni poklon spinovi.</li>
-                  <li>• Bonusi sa povoljnim uslovima.</li>
-                  <li>• Turniri.</li>
-                  <li>• Promocije.</li>
+              <!-- content: fade/slide on open -->
+              <div class="vip-acc__content relative px-6 pb-6 -mt-1">
+                <div
+                  class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-4"
+                ></div>
+
+                <ul class="space-y-2 text-m leading-relaxed text-white/90">
+                  <li class="flex items-start gap-1">
+                    <span class="mt-1 flex-shrink-0">
+                      <svg
+                        class="w-4 h-4 text-[#f0c86d]"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>Redovni poklon spinovi.</span>
+                  </li>
+                  <li class="flex items-start gap-1">
+                    <span class="mt-1 flex-shrink-0">
+                      <svg
+                        class="w-4 h-4 text-[#f0c86d]"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>Bonusi sa povoljnim uslovima.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <span class="mt-1 flex-shrink-0">
+                      <svg
+                        class="w-4 h-4 text-[#f0c86d]"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>Turniri.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <span class="mt-1 flex-shrink-0">
+                      <svg
+                        class="w-4 h-4 text-[#f0c86d]"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>Promocije.</span>
+                  </li>
                 </ul>
               </div>
             </details>
+            <!-- GOLD -->
             <details
-              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+              class="vip-acc group relative rounded-2xl overflow-hidden bg-black/50 backdrop-blur-xl border border-white/10 ring-1 ring-[#f0c86d]/20 shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition hover:ring-[#f0c86d]/35 open:ring-[#f0c86d]/40"
             >
+              <!-- premium shine -->
+              <div
+                class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(240,200,109,0.18),transparent_45%)]"
+              ></div>
+
               <summary
-                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+                class="relative cursor-pointer list-none flex items-center gap-4 px-5 py-5 select-none"
               >
                 <img
-                  src="./img/f5.png"
-                  alt="Diamond badge"
-                  class="h-24 w-auto shrink-0"
+                  src="./img/f3.png"
+                  alt="Bronze badge"
+                  class="h-24 w-24 shrink-0 drop-shadow-[0_10px_18px_rgba(0,0,0,0.45)]"
                 />
+
                 <div class="flex-1">
                   <div
-                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                    class="text-[#f0c86d] font-medium tracking-[0.26em] text-lg"
                   >
                     GOLD
                   </div>
                 </div>
+
                 <span
-                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                  class="ml-auto grid place-items-center h-10 w-10 rounded-full bg-black/20 border border-[#f0c86d]/25 transition-all duration-300 group-open:bg-[#f0c86d]/15 group-open:border-[#f0c86d]/40"
+                  aria-hidden="true"
                 >
                   <svg
-                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    class="h-5 w-5 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
-                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
+                    <path d="M6 9l6 6 6-6" />
                   </svg>
                 </span>
               </summary>
 
-              <div class="px-5 pb-5 pt-1">
-                <ul class="space-y-2 text-sm leading-snug text-white">
-                  <li>• Lični asistent za bržu komunikaciju.</li>
-                  <li>• Redovni poklon spinovi.</li>
-                  <li>• Bonusi sa povoljnim uslovima.</li>
-                  <li>• Redovan kazino cashback.</li>
-                  <li>• Turniri.</li>
-                  <li>• Promocije.</li>
-                  <li>• Viši limiti isplata.</li>
-                  <li>• Personalizovane promocije.</li>
+              <!-- content: fade/slide on open -->
+              <div class="vip-acc__content relative px-6 pb-6 -mt-1">
+                <div
+                  class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-4"
+                ></div>
+
+                <ul class="space-y-2 text-m leading-relaxed text-white/90">
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Lični asistent za bržu komunikaciju.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Redovni poklon spinovi.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Bonusi sa povoljnim uslovima.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Redovan kazino cashback.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Turniri.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Promocije.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Viši limiti isplata.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Personalizovane promocije.</span>
+                  </li>
                 </ul>
               </div>
             </details>
+            <!-- PLATINUM -->
             <details
-              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+              class="vip-acc group relative rounded-2xl overflow-hidden bg-black/60 backdrop-blur-xl border border-[#f0c86d]/15 ring-1 ring-[#f0c86d]/20 shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition hover:ring-[#f0c86d]/35 open:ring-[#f0c86d]/40"
             >
+              <!-- subtle gold glow -->
+              <div
+                class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(240,200,109,0.15),transparent_45%)]"
+              ></div>
+
               <summary
-                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+                class="relative cursor-pointer list-none flex items-center gap-4 px-5 py-5 select-none"
               >
                 <img
                   src="./img/f4.png"
                   alt="Platinum badge"
-                  class="h-24 w-auto shrink-0"
+                  class="h-24 w-24 shrink-0 drop-shadow-[0_10px_18px_rgba(0,0,0,0.45)]"
                 />
+
                 <div class="flex-1">
                   <div
-                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                    class="text-[#f0c86d] font-medium tracking-[0.26em] text-lg"
                   >
                     PLATINUM
                   </div>
                 </div>
+
                 <span
-                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                  class="ml-auto grid place-items-center h-10 w-10 rounded-full bg-black/20 border border-[#f0c86d]/25 transition-all duration-300 group-open:bg-[#f0c86d]/15 group-open:border-[#f0c86d]/40"
                 >
                   <svg
-                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    class="h-5 w-5 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
-                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
+                    <path d="M6 9l6 6 6-6" />
                   </svg>
                 </span>
               </summary>
 
-              <div class="px-5 pb-5 pt-1">
-                <ul class="space-y-2 text-sm leading-snug text-white">
-                  <li>• Lični asistent za bržu komunikaciju.</li>
-                  <li>• Redovni poklon spinovi sa većim ulozima.</li>
-                  <li>• Bonusi sa povoljnijim uslovima.</li>
-                  <li>• Redovan kazino cashback.</li>
-                  <li>• Specijalni turniri.</li>
-                  <li>• Viši limiti isplata.</li>
-                  <li>• Brža obrada zahteva.</li>
-                  <li>• Najviši limiti promocija.</li>
-                  <li>• Pozivnice za prestižne događaje.</li>
+              <!-- animated content -->
+              <div class="vip-acc__content relative px-6 pb-6 -mt-1">
+                <div
+                  class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-4"
+                ></div>
+
+                <ul class="space-y-2 text-m leading-relaxed text-white/90">
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Lični asistent za bržu komunikaciju.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Redovni poklon spinovi sa većim ulozima.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Bonusi sa povoljnijim uslovima.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Redovan kazino cashback.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Specijalni turniri.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Viši limiti isplata.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Brža obrada zahteva.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Najviši limiti promocija.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_6px_rgba(240,200,109,0.5)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Pozivnice za prestižne događaje.</span>
+                  </li>
                 </ul>
               </div>
             </details>
+            <!-- DIAMOND -->
             <details
-              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+              class="vip-acc group relative rounded-2xl overflow-hidden bg-black/65 backdrop-blur-xl border border-[#f0c86d]/25 ring-1 ring-[#f0c86d]/30 shadow-[0_0_30px_rgba(240,200,109,0.15),0_15px_40px_rgba(0,0,0,0.5)] transition hover:ring-[#f0c86d]/45 open:ring-[#f0c86d]/60"
             >
+              <!-- stronger gold glow -->
+              <div
+                class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(240,200,109,0.22),transparent_50%)]"
+              ></div>
+
               <summary
-                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+                class="relative cursor-pointer list-none flex items-center gap-5 px-5 py-5 select-none"
               >
                 <img
                   src="./img/f5.png"
                   alt="Diamond badge"
-                  class="h-24 w-auto shrink-0"
+                  class="h-24 w-24 shrink-0 drop-shadow-[0_15px_25px_rgba(240,200,109,0.35)]"
                 />
+
                 <div class="flex-1">
                   <div
-                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                    class="text-[#f0c86d] font-semibold tracking-[0.26em] text-l"
                   >
                     DIAMOND
                   </div>
                 </div>
+
                 <span
-                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                  class="ml-auto grid place-items-center h-10 w-10 rounded-full bg-black/30 border border-[#f0c86d]/40 transition-all duration-300 group-open:bg-[#f0c86d]/20 group-open:border-[#f0c86d]/60"
                 >
                   <svg
-                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    class="h-5 w-5 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
-                    viewBox="0 0 24 24"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
+                    <path d="M6 9l6 6 6-6" />
                   </svg>
                 </span>
               </summary>
 
-              <div class="px-5 pb-5 pt-1">
-                <ul class="space-y-2 text-sm leading-snug text-white">
-                  <li>• Lični asistent – uvek dostupan, samo za tebe.</li>
-                  <li>• Redovni poklon spinovi sa većim ulozima.</li>
-                  <li>• Bonusi sa najpovoljnijim uslovima.</li>
-                  <li>• Redovan kazino cashback.</li>
-                  <li>• Specijalni turniri.</li>
-                  <li>• Promocije.</li>
-                  <li>• Najviši limiti isplata.</li>
-                  <li>• Prioritetna obrada zahteva.</li>
-                  <li>• Ekskluzivne personalizovane promocije.</li>
-                  <li>• Pozivnice za prestižne događaje.</li>
+              <!-- animated content -->
+              <div class="vip-acc__content relative px-6 pb-6 -mt-1">
+                <div
+                  class="h-px w-full bg-gradient-to-r from-transparent via-[#f0c86d]/30 to-transparent mb-4"
+                ></div>
+
+                <ul class="space-y-2 text-m leading-relaxed text-white/95">
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Lični asistent – uvek dostupan, samo za tebe.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Redovni poklon spinovi sa većim ulozima.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Bonusi sa najpovoljnijim uslovima.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Redovan kazino cashback.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Specijalni turniri.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Promocije.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Najviši limiti isplata.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Prioritetna obrada zahteva.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Ekskluzivne personalizovane promocije.</span>
+                  </li>
+
+                  <li class="flex items-start gap-1">
+                    <svg
+                      class="w-4 h-4 mt-1 text-[#f0c86d] drop-shadow-[0_0_8px_rgba(240,200,109,0.7)]"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Pozivnice za prestižne događaje.</span>
+                  </li>
                 </ul>
               </div>
             </details>
+            <!-- SCROLL HINT -->
+            <div
+              id="scrollHint"
+              class="md:hidden fixed bottom-[86px] left-0 right-0 flex justify-center pointer-events-none z-30 transition-opacity duration-300"
+            >
+              <div
+                class="w-5 h-8 rounded-full border-2 border-[#f0c86d]/70 flex justify-center relative"
+              >
+                <div
+                  class="w-1 h-2 bg-[#f0c86d] rounded-full mt-1 animate-bounce"
+                ></div>
+              </div>
+            </div>
           </div>
           <!-- KARTICE -->
           <div
@@ -641,7 +1219,7 @@
     >
       <a
         href="https://meridianbet.rs/sr/registracija"
-        class="block w-full text-center py-3 rounded-lg bg-gradient-to-r from-[#17BB00] to-[#119900] text-white font-medium text-sm hover:brightness-110 active:scale-[0.98] transition-all duration-200"
+        class="block w-full text-center py-3 rounded-lg bg-gradient-to-r from-[#17BB00] to-[#119900] text-white font-medium text-l hover:brightness-110 active:scale-[0.98] transition-all duration-200"
       >
         REGISTRUJ SE I UZMI BONUS
       </a>
@@ -739,6 +1317,111 @@
             updateFades();
           }
         });
+
+        // ===== Accordion (mobile) =====
+        const accRoot = document.getElementById("vipAccordion");
+        if (!accRoot) return;
+
+        const items = Array.from(accRoot.querySelectorAll("details.vip-acc"));
+
+        function openItem(details) {
+          const content = details.querySelector(".vip-acc__content");
+          if (!content) return;
+
+          // zatvori ostale (sa animacijom)
+          items.forEach((d) => {
+            if (d !== details && d.open) closeItem(d);
+          });
+
+          // ako je vec otvoren, ništa
+          if (details.open) return;
+
+          details.open = true;
+
+          // reset height -> animiraj na scrollHeight
+          content.style.height = "0px";
+          // force reflow
+          content.offsetHeight;
+
+          const target = content.scrollHeight;
+          content.style.height = target + "px";
+
+          const onEnd = (e) => {
+            if (e.propertyName !== "height") return;
+            content.removeEventListener("transitionend", onEnd);
+            // posle animacije pusti auto da radi na resize/promene sadržaja
+            content.style.height = "auto";
+          };
+          content.addEventListener("transitionend", onEnd);
+        }
+
+        function closeItem(details) {
+          const content = details.querySelector(".vip-acc__content");
+          if (!content) return;
+          if (!details.open) return;
+
+          // ako je auto, prvo setuj trenutnu realnu visinu pa zatvaraj
+          const current = content.scrollHeight;
+          content.style.height = current + "px";
+          // force reflow
+          content.offsetHeight;
+
+          content.style.height = "0px";
+
+          const onEnd = (e) => {
+            if (e.propertyName !== "height") return;
+            content.removeEventListener("transitionend", onEnd);
+            details.open = false;
+            // očisti inline stilove
+            content.style.height = "0px";
+          };
+          content.addEventListener("transitionend", onEnd);
+        }
+
+        // preuzmi klik na summary (da ne ide default toggle)
+        items.forEach((details) => {
+          const summary = details.querySelector("summary");
+          if (!summary) return;
+
+          summary.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (details.open) closeItem(details);
+            else openItem(details);
+          });
+
+          // Enter/Space podrška
+          summary.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              if (details.open) closeItem(details);
+              else openItem(details);
+            }
+          });
+        });
+
+        // opcionalno: otvori prvi po defaultu
+        openItem(items[0]);
+
+        //SCROLL HINT
+        const scrollHint = document.getElementById("scrollHint");
+
+        function handleScrollHint() {
+          if (!scrollHint) return;
+
+          const scrollTop = window.scrollY;
+          const windowHeight = window.innerHeight;
+          const docHeight = document.documentElement.scrollHeight;
+
+          // ako smo skoro na dnu (50px tolerancija)
+          if (scrollTop + windowHeight >= docHeight - 50) {
+            scrollHint.style.opacity = "0";
+          } else {
+            scrollHint.style.opacity = "1";
+          }
+        }
+
+        window.addEventListener("scroll", handleScrollHint);
+        handleScrollHint();
       });
     </script>
   </body>
