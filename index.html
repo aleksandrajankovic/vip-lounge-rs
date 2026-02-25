@@ -112,22 +112,261 @@
 
         <!-- SLIDER WRAPPER + fade -->
         <div class="relative mt-14 px-4 desk:px-0">
-          <!-- fade levo -->
-          <div
-            id="vipFadeLeft"
-            class="pointer-events-none absolute inset-y-0 left-0 w-20 z-20 bg-gradient-to-r from-[#050816] via-[#050816]/60 to-transparent desk:hidden opacity-0 transition-opacity duration-200"
-          ></div>
-          <!-- fade desno -->
-          <div
-            id="vipFadeRight"
-            class="pointer-events-none absolute inset-y-0 right-0 w-20 z-20 bg-gradient-to-l from-[#050816] via-[#050816]/60 to-transparent desk:hidden opacity-100 transition-opacity duration-200"
-          ></div>
+          <!-- MOBILE STACK (accordion) -->
+          <div class="md:hidden space-y-4">
+            <!-- BRONZE -->
+            <details
+              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+            >
+              <summary
+                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+              >
+                <img
+                  src="./img/f1.png"
+                  alt="Bronze badge"
+                  class="h-24 w-auto shrink-0"
+                />
+                <div class="flex-1">
+                  <div
+                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                  >
+                    BRONZE
+                  </div>
+                </div>
+                <span
+                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                >
+                  <svg
+                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </summary>
 
+              <div class="px-5 pb-5 pt-1">
+                <ul class="space-y-2 text-sm leading-snug">
+                  <li>• Redovni poklon spinovi.</li>
+                  <li>• Turniri.</li>
+                  <li>• Promocije.</li>
+                </ul>
+              </div>
+            </details>
+
+            <!-- SILVER -->
+            <details
+              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+            >
+              <summary
+                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+              >
+                <img
+                  src="./img/f2.png"
+                  alt="Silver badge"
+                  class="h-24 w-auto shrink-0"
+                />
+                <div class="flex-1">
+                  <div
+                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                  >
+                    SILVER
+                  </div>
+                </div>
+                <span
+                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                >
+                  <svg
+                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <div class="px-5 pb-5 pt-1">
+                <ul class="space-y-2 text-sm leading-snug">
+                  <li>• Redovni poklon spinovi.</li>
+                  <li>• Bonusi sa povoljnim uslovima.</li>
+                  <li>• Turniri.</li>
+                  <li>• Promocije.</li>
+                </ul>
+              </div>
+            </details>
+            <details
+              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+            >
+              <summary
+                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+              >
+                <img
+                  src="./img/f5.png"
+                  alt="Diamond badge"
+                  class="h-24 w-auto shrink-0"
+                />
+                <div class="flex-1">
+                  <div
+                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                  >
+                    GOLD
+                  </div>
+                </div>
+                <span
+                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                >
+                  <svg
+                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <div class="px-5 pb-5 pt-1">
+                <ul class="space-y-2 text-sm leading-snug text-white">
+                  <li>• Lični asistent za bržu komunikaciju.</li>
+                  <li>• Redovni poklon spinovi.</li>
+                  <li>• Bonusi sa povoljnim uslovima.</li>
+                  <li>• Redovan kazino cashback.</li>
+                  <li>• Turniri.</li>
+                  <li>• Promocije.</li>
+                  <li>• Viši limiti isplata.</li>
+                  <li>• Personalizovane promocije.</li>
+                </ul>
+              </div>
+            </details>
+            <details
+              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+            >
+              <summary
+                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+              >
+                <img
+                  src="./img/f4.png"
+                  alt="Platinum badge"
+                  class="h-24 w-auto shrink-0"
+                />
+                <div class="flex-1">
+                  <div
+                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                  >
+                    PLATINUM
+                  </div>
+                </div>
+                <span
+                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                >
+                  <svg
+                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <div class="px-5 pb-5 pt-1">
+                <ul class="space-y-2 text-sm leading-snug text-white">
+                  <li>• Lični asistent za bržu komunikaciju.</li>
+                  <li>• Redovni poklon spinovi sa većim ulozima.</li>
+                  <li>• Bonusi sa povoljnijim uslovima.</li>
+                  <li>• Redovan kazino cashback.</li>
+                  <li>• Specijalni turniri.</li>
+                  <li>• Viši limiti isplata.</li>
+                  <li>• Brža obrada zahteva.</li>
+                  <li>• Najviši limiti promocija.</li>
+                  <li>• Pozivnice za prestižne događaje.</li>
+                </ul>
+              </div>
+            </details>
+            <details
+              class="group rounded-xl bg-[#16232a]/70 border border-[#f0c86d33] overflow-hidden"
+            >
+              <summary
+                class="cursor-pointer list-none flex items-center gap-3 px-4 py-4"
+              >
+                <img
+                  src="./img/f5.png"
+                  alt="Diamond badge"
+                  class="h-24 w-auto shrink-0"
+                />
+                <div class="flex-1">
+                  <div
+                    class="text-[#d9a52d] font-medium tracking-[0.22em] text-m"
+                  >
+                    DIAMOND
+                  </div>
+                </div>
+                <span
+                  class="ml-auto flex items-center justify-center w-6 h-6 rounded-full bg-[#f0c86d]/10 border border-[#f0c86d]/30 transition-all duration-300 group-open:bg-[#f0c86d]/20"
+                >
+                  <svg
+                    class="w-3 h-3 text-[#f0c86d] transition-transform duration-300 group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <div class="px-5 pb-5 pt-1">
+                <ul class="space-y-2 text-sm leading-snug text-white">
+                  <li>• Lični asistent – uvek dostupan, samo za tebe.</li>
+                  <li>• Redovni poklon spinovi sa većim ulozima.</li>
+                  <li>• Bonusi sa najpovoljnijim uslovima.</li>
+                  <li>• Redovan kazino cashback.</li>
+                  <li>• Specijalni turniri.</li>
+                  <li>• Promocije.</li>
+                  <li>• Najviši limiti isplata.</li>
+                  <li>• Prioritetna obrada zahteva.</li>
+                  <li>• Ekskluzivne personalizovane promocije.</li>
+                  <li>• Pozivnice za prestižne događaje.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
           <!-- KARTICE -->
           <div
             id="vipSlider"
             style="touch-action: pan-y; -webkit-overflow-scrolling: touch"
-            class="relative z-10 no-scrollbar overflow-x-auto pt-6 flex gap-4 snap-x snap-mandatory desk:gap-8 desk:justify-center desk:overflow-visible desk:pb-0"
+            class="hidden md:flex relative z-10 no-scrollbar overflow-x-auto pt-6 gap-4 snap-x snap-mandatory desk:gap-8 desk:justify-center desk:overflow-visible desk:pb-0"
           >
             <!-- STARTER -->
             <article
@@ -402,7 +641,7 @@
     >
       <a
         href="https://meridianbet.rs/sr/registracija"
-        class="block w-full text-center py-3 rounded-lg bg-gradient-to-r from-[#f0c86d] to-[#d9a52d] text-[#050816] font-medium text-sm"
+        class="block w-full text-center py-3 rounded-lg bg-gradient-to-r from-[#17BB00] to-[#119900] text-white font-medium text-sm hover:brightness-110 active:scale-[0.98] transition-all duration-200"
       >
         REGISTRUJ SE I UZMI BONUS
       </a>
